@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  background-color: rgb(201, 201, 201);
   
 }
 
@@ -26,7 +27,7 @@ body {
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
-  border: 1px solid brown;
+  border: 1px solid rgb(154, 45, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,13 +65,16 @@ body {
 }
 
 .cell.cell.x::before,
-.cell.x::after {
-  background: linear-gradient(to bottom, #000000 0%, #8f8f8f 100%);
+.cell.x::after,
+.cell.circle::before {
+  background: linear-gradient(to bottom, #af4eff 0%, #8f8f8f 100%);
 }
 
+
 .board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
-  background-color: lightgrey;
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: rgba(191, 255, 220, 0.459);
 }
 
 .cell.x::before,
@@ -95,21 +99,62 @@ body {
 }
 
 .cell.circle::before,
-.cell.circle::after {
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
   content: '';
   position: absolute;
   border-radius: 50%;
   
 }
 
-.cell.circle::before {
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
   width: var(--mark-size);
   height: var(--mark-size);
-  background: linear-gradient(to bottom, #000000 0%, #8f8f8f 100%);
+
 }
 
-.cell.circle::after {
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
   width: calc(var(--mark-size) * .7);
   height: calc(var(--mark-size)* .7);
-  background: white
+  background: rgb(201, 201, 201);
+}
+
+.winning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.774);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5rem;
+  flex-direction: column;
+}
+
+.winning-message button {
+  font-size: 2rem;
+  background-color: rgba(209, 160, 255, 0.932);
+  border: 0;
+  padding: .15em .5em;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(54, 54, 54);
+}
+
+.winning-message button:hover {
+  background-color: rgb(54, 54, 54);
+  color:rgba(209, 160, 255, 0.932);
+  border-color:white;
+
+}
+
+.winning-message.show {
+  display: flex;
 }
